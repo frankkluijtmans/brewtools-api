@@ -1,18 +1,18 @@
+require('dotenv').config()
+
 const express = require('express')
 const app = express()
-var session = require('express-session');
-var Keycloak = require('keycloak-connect');
+const session = require('express-session');
+const keycloakConfig = require('./config/keycloak');
+const Keycloak = require('keycloak-connect');
+const mongoose = require('mongoose');
 
-let kcConfig = {
-    clientId: 'brewtools-api-dev',
-    bearerOnly: true,
-    serverUrl: 'https://id.brewtools.org/auth',
-    realm: 'Brewtools',
-    realmPublicKey: 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv5Y8v4RZBJGD7CmXHFMXccYAAo06zA6xf5f8yMWaru0nHUrlIf2f0XiIESXu4xzPihMhinSmBgxG7DIejkLRRYbHnWhmstynwplCPFwlRFxECS9hohfNe8X8mi3JISyjJomfySonkgmZEKykhS0ThPIrSnc0Dz18S5gOM7OtrU5HqUw4L4gbZtSnTC670bycSTv+VPwXHACesDLLXb+SWGk8ic11/N0SKkTI8T2UI7VnGm/0c4C5fzV9g4BiM1aM5hoFJi0y5zeddBcvycztdBcNz7pN4g/2sJ+E1BC5OiWVRTEG+jNHjirWhVFNFbkFW31ChsU/8serl5ajy5OKzQIDAQAB'
-}
+mongoose.connect(process.env.DATABASE_URL);
+
+const Cat = mongoose.model('Cat', { name: String });
 
 var memoryStore = new session.MemoryStore();
-var keycloak = new Keycloak({ store: memoryStore }, kcConfig);
+var keycloak = new Keycloak({ store: memoryStore }, keycloakConfig);
 
 app.use(function(req, res, next) {
 
@@ -41,6 +41,12 @@ app.get('/', keycloak.protect(), (req, res) => {
     res.json({
         test: "frankk"
     })
+})
+
+app.post('/insert', (req, res) => {
+
+    const kitty = new Cat({ name: 'Purr' });
+    kitty.save().then(res.sendStatus(200));
 })
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))

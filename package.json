@@ -11,6 +11,10 @@
   "dependencies": {
     "express": "^4.16.3",
     "express-session": "^1.15.6",
-    "keycloak-connect": "^4.2.1"
+    "keycloak-connect": "^4.2.1",
+    "mongoose": "^5.2.6"
+  },
+  "devDependencies": {
+    "dotenv": "^6.0.0"
   }
 }
