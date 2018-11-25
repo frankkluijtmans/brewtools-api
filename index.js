@@ -6,6 +6,10 @@ const session = require('express-session');
 const keycloakConfig = require('./config/keycloak');
 const Keycloak = require('keycloak-connect');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 mongoose.connect(process.env.DATABASE_URL);
 
@@ -20,6 +24,7 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
 
     if (req.method === 'OPTIONS') {
+        
         res.sendStatus(200);
     }
     else {
@@ -45,7 +50,7 @@ app.get('/', keycloak.protect(), (req, res) => {
 
 app.post('/insert', (req, res) => {
 
-    const kitty = new Cat({ name: 'Purr' });
+    const kitty = new Cat({ name: req.body.name });
     kitty.save().then(res.sendStatus(200));
 })
 
