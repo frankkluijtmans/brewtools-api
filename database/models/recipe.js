@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-var recipeSchema = new mongoose.Schema({ 
+const recipeSchema = new mongoose.Schema({ 
     name: 'string',
     style: 'string',
     brewery: 'number', 
@@ -10,3 +10,5 @@ var recipeSchema = new mongoose.Schema({
     ibu: 'number',
     base_volume: 'number'
 });
+
+module.exports = mongoose.model('Recipe', recipeSchema);
