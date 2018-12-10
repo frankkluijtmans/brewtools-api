@@ -11,8 +11,11 @@ const bodyParser = require('body-parser');
 const acceptOptions = require('./middleware/accept-options');
 
 //Handlers
+const updateRecipeHandler = require('./handlers/update-recipe');
 const newRecipeHandler = require('./handlers/new-recipe');
-const testHandler = require('./handlers/test-handler');
+const getRecipeHandler = require('./handlers/get-recipe');
+const getAllRecipesHandler = require('./handlers/get-all-recipes');
+const deleteRecipeHandler = require('./handlers/delete-recipe');
 
 //Keycloak
 const memoryStore = new session.MemoryStore();
@@ -24,7 +27,10 @@ app.use(acceptOptions);
 app.use(keycloak.middleware());
 
 //Endpoints
-app.get('/', keycloak.protect(), testHandler);
-app.post('/insert', keycloak.protect(), newRecipeHandler);
+app.post('/recipe/create', keycloak.protect(), newRecipeHandler);
+app.post('/recipe/update', keycloak.protect(), updateRecipeHandler);
+app.get('/recipe/get/:id', keycloak.protect(), getRecipeHandler);
+app.get('/recipe/get-all', keycloak.protect(), getAllRecipesHandler);
+app.get('/recipe/delete/:id', keycloak.protect(), deleteRecipeHandler);
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'));

@@ -4,9 +4,9 @@ const Recipe = require('../database/models/recipe');
 mongoose.connect(process.env.DATABASE_URL);
 
 module.exports = (req, res) => {
-    console.log(req.body.name);
+
     const recipeTest = new Recipe({
-        name: 'Tripple Nipple',
+        name: req.body.name,
         style: 'Belgian Triple',
         collaborators: ['frank_kluyt@hotmail.com'],
         og: 1057,
@@ -72,5 +72,6 @@ module.exports = (req, res) => {
             volume: 20
         }
     });
+
     recipeTest.save().then(res.sendStatus(200));
 };

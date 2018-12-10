@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-const Cat = require('../database/models/cat');
+const Recipe = require('../database/models/recipe');
 
 mongoose.connect(process.env.DATABASE_URL);
 
 module.exports = (req, res) => {
 
-    const query = Cat.find({ name: 'Derp'});
+    const query = Recipe.find();
 
     query.exec(function (err, docs) {
 
