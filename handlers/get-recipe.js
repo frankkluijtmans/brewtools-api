@@ -9,6 +9,11 @@ module.exports = (req, res) => {
 
     query.exec(function (err, docs) {
 
+        if(err) {
+
+            rest.status(503);
+        }
+        
         res.json(docs);
     });
 };

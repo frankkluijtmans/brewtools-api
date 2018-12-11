@@ -1,39 +1,51 @@
 const mongoose = require('mongoose');
 
 const recipeSchema = new mongoose.Schema({ 
-    name: 'string',
-    style: 'string',
-    collaborators: ['string'],
-    og: 'number',
-    fg: 'number',
-    ibu: 'number',
-    ebc: 'number',
-    base_volume: 'number',
-    boiling_time: 'number',
-    mash_water: 'number',
-    flush_water: 'number',
+    name: String,
+    created: { 
+        type: Date, 
+        default: Date.now 
+    },
+    last_edited: {
+        date: { 
+            type: Date, 
+            default: Date.now 
+        },
+        user: String
+    },
+    style: String,
+    owner: String,
+    collaborators: [String],
+    og: Number,
+    fg: Number,
+    ibu: Number,
+    ebc: Number,
+    base_volume: Number,
+    boiling_time: Number,
+    mash_water: Number,
+    flush_water: Number,
     mash: [{
-        temperature: 'number',
-        duration: 'number'
+        temperature: Number,
+        duration: Number
     }],
     hops: [{
-        name: 'string',
+        name: String,
         bitterness: 'decimal128',
-        volume: 'number',
-        boiling_time: 'number'
+        volume: Number,
+        boiling_time: Number
     }],
     grains: [{
-        name: 'string',
-        color: 'number',
-        volume: 'number'
+        name: String,
+        color: Number,
+        volume: Number
     }],
     other: [{
-        name: 'string',
-        volume: 'number'
+        name: String,
+        volume: Number
     }],
     yeast: {
-        name: 'string',
-        volume: 'number'
+        name: String,
+        volume: Number
     }
 });
 

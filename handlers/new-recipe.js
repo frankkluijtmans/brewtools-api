@@ -5,10 +5,18 @@ mongoose.connect(process.env.DATABASE_URL);
 
 module.exports = (req, res) => {
 
+    const token_content = req.kauth.grant.access_token.content;
+
     const recipeTest = new Recipe({
         name: req.body.name,
+        last_edited: {
+            user: token_content.email
+        },
         style: 'Belgian Triple',
-        collaborators: ['frank_kluyt@hotmail.com'],
+        owner: token_content.email,
+        collaborators: [
+            'frank@cmez.eu'
+        ],
         og: 1057,
         fg: 1012,
         ibu: 21,
