@@ -12,15 +12,15 @@ module.exports = (req, res) => {
         last_edited: {
             user: token_content.email
         },
-        style: 'Belgian Triple',
+        style: 'Belgian Golden Ale',
         owner: token_content.email,
         collaborators: [
             'frank@cmez.eu'
         ],
-        og: 1057,
-        fg: 1012,
+        og: 1067,
+        fg: 1015,
         ibu: 21,
-        ebc: 20,
+        ebc: 18,
         base_volume: 10,
         boiling_time: 90,
         mash_water: 25,

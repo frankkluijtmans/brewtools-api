@@ -31,6 +31,6 @@ app.post('/recipe/create', keycloak.protect(), newRecipeHandler);
 app.post('/recipe/update', keycloak.protect(), updateRecipeHandler);
 app.get('/recipe/get/:id', keycloak.protect(), getRecipeHandler);
 app.get('/recipe/get-all', keycloak.protect(), getAllRecipesHandler);
-app.get('/recipe/delete/:id', keycloak.protect(), deleteRecipeHandler);
+app.post('/recipe/delete/:id', keycloak.protect(), deleteRecipeHandler);
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'));

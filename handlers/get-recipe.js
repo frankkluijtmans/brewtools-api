@@ -7,13 +7,15 @@ module.exports = (req, res) => {
 
     const query = Recipe.findById(req.params.id);
 
-    query.exec(function (err, docs) {
+    query.exec(function(err, docs) {
 
         if(err) {
 
-            rest.status(503);
+            res.status(503);
         }
         
-        res.json(docs);
+        res.json({
+            success: true
+        });
     });
 };

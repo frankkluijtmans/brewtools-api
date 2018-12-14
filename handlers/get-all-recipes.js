@@ -15,7 +15,7 @@ module.exports = (req, res) => {
 
         if(err) {
 
-            rest.status(503);
+            res.status(503);
         }
 
         res.json(docs);
