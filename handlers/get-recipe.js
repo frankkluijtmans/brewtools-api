@@ -12,8 +12,12 @@ module.exports = (req, res) => {
         if(err) {
 
             res.status(503);
+            res.json({
+                error: 'Data retrieval error.'
+            });
         }
         
+        res.status(200);
         res.json(docs);
     });
 };

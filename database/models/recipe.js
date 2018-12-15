@@ -34,7 +34,7 @@ const recipeSchema = new mongoose.Schema({
         volume: Number,
         boiling_time: Number
     }],
-    grains: [{
+    fermentables: [{
         name: String,
         color: Number,
         volume: Number

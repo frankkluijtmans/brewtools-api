@@ -40,7 +40,7 @@ module.exports = (req, res) => {
             }
         ],
         hops: req.body.hops,
-        grains: req.body.grains,
+        fermentables: req.body.fermentables,
         other: [
             {
                 name: 'Sweetened orange peel',
@@ -57,5 +57,11 @@ module.exports = (req, res) => {
         }
     });
 
-    recipeTest.save().then(res.sendStatus(200));
+    recipeTest.save().then(() => {
+        
+        res.status(200);
+        res.json({
+            success: true
+        });
+    });
 };

@@ -6,6 +6,7 @@ mongoose.connect(process.env.DATABASE_URL);
 module.exports = (req, res) => {
     
     const token_content = req.kauth.grant.access_token.content;
+
     const query = Recipe.find({ $or:[
         { owner: token_content.email },
         { collaborators: token_content.email }
@@ -16,8 +17,12 @@ module.exports = (req, res) => {
         if(err) {
 
             res.status(503);
+            res.json({
+                error: 'Data retrieval error.'
+            });
         }
 
+        res.status(200);
         res.json(docs);
     });
 };

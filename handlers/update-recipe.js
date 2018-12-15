@@ -9,6 +9,7 @@ module.exports = (req, res) => {
 
     query.exec(function () {
 
+        res.status(200);
         res.json({
             success: true
         });
