@@ -12,19 +12,19 @@ module.exports = (req, res) => {
         last_edited: {
             user: token_content.email
         },
-        style: 'Belgian Golden Ale',
+        style: req.body.style,
         owner: token_content.email,
         collaborators: [
             'frank@cmez.eu'
         ],
-        og: 1067,
-        fg: 1015,
-        ibu: 21,
-        ebc: 18,
-        base_volume: 10,
-        boiling_time: 90,
-        mash_water: 25,
-        flush_water: 10,
+        og: req.body.og,
+        fg: req.body.fg,
+        ibu: req.body.ibu,
+        ebc: req.body.ebc,
+        base_volume: req.body.base_volume,
+        boiling_time: req.body.boiling_time,
+        mash_water: req.body.mash_water,
+        flush_water: req.body.flush_water,
         mash: [
             {
                 temperature: 60,

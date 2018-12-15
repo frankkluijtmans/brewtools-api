@@ -14,8 +14,6 @@ module.exports = (req, res) => {
             res.status(503);
         }
         
-        res.json({
-            success: true
-        });
+        res.json(docs);
     });
 };
