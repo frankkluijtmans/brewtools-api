@@ -39,32 +39,8 @@ module.exports = (req, res) => {
                 duration: 5
             }
         ],
-        hops: [
-            {
-                name: 'Centennial',
-                bitterness: 11.2,
-                volume: 45,
-                boiling_time: 90
-            },
-            {
-                name: 'Cascade',
-                bitterness: 8.6,
-                volume: 18,
-                boiling_time: 30
-            }
-        ],
-        grains: [
-            {
-                name: 'Pilsener',
-                color: 8,
-                volume: 600
-            },
-            {
-                name: 'Caramunich',
-                color: 120,
-                volume: 80
-            }
-        ],
+        hops: req.body.hops,
+        grains: req.body.grains,
         other: [
             {
                 name: 'Sweetened orange peel',
