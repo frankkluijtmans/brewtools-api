@@ -14,9 +14,7 @@ module.exports = (req, res) => {
         },
         style: req.body.style,
         owner: token_content.email,
-        collaborators: [
-            'frank@cmez.eu'
-        ],
+        collaborators: [],
         og: req.body.og,
         fg: req.body.fg,
         ibu: req.body.ibu,
@@ -25,35 +23,13 @@ module.exports = (req, res) => {
         boiling_time: req.body.boiling_time,
         mash_water: req.body.mash_water,
         flush_water: req.body.flush_water,
-        mash: [
-            {
-                temperature: 60,
-                duration: 15
-            },
-            {
-                temperature: 65,
-                duration: 60
-            },
-            {
-                temperature: 72,
-                duration: 5
-            }
-        ],
+        mash: req.body.mash,
         hops: req.body.hops,
         fermentables: req.body.fermentables,
-        other: [
-            {
-                name: 'Sweetened orange peel',
-                volume: 6
-            },
-            {
-                name: 'Cilantro',
-                volume: 11
-            }
-        ],
+        other: req.body.other,
         yeast: {
-            name: 'Safale US-05',
-            volume: 20
+            name: req.body.yeast.name,
+            volume: req.body.yeast.volume
         }
     });
 
