@@ -2,9 +2,9 @@
   "name": "brewtools-api",
   "version": "1.0.0",
   "description": "This is the data layer for Brewtools.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon server.js"
   },
   "author": "Frank Kluijtmans",
   "license": "ISC",
@@ -13,7 +13,8 @@
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "keycloak-connect": "^4.2.1",
-    "mongoose": "^5.2.6"
+    "mongoose": "^5.2.6",
+    "nodemon": "^1.18.9"
   },
   "devDependencies": {
     "dotenv": "^6.0.0"
