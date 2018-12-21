@@ -14,9 +14,7 @@
     "express-session": "^1.15.6",
     "keycloak-connect": "^4.2.1",
     "mongoose": "^5.2.6",
-    "nodemon": "^1.18.9"
-  },
-  "devDependencies": {
-    "dotenv": "^6.0.0"
+    "nodemon": "^1.18.9",
+    "dotenv": "^6.2.0"
   }
 }
