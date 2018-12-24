@@ -34,4 +34,4 @@ app.get('/recipe/get/:id', keycloak.protect(), getRecipeHandler);
 app.get('/recipe/get-all', keycloak.protect(), getAllRecipesHandler);
 app.post('/recipe/delete/:id', keycloak.protect(), deleteRecipeHandler);
 
-app.listen(port, () => console.log(`Brewtools API is running on port ${port}!`));
+module.exports = app;
