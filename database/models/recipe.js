@@ -20,10 +20,10 @@ const recipeSchema = new mongoose.Schema({
     fg: Number,
     ibu: Number,
     ebc: Number,
-    base_volume: Number,
+    base_volume: 'decimal128',
     boiling_time: Number,
-    mash_water: Number,
-    flush_water: Number,
+    mash_water: 'decimal128',
+    flush_water: 'decimal128',
     mash: [{
         temperature: Number,
         duration: Number
