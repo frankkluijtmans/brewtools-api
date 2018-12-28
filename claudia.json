@@ -1,0 +1,10 @@
+{
+  "lambda": {
+    "role": "brewtools-api-executor",
+    "name": "brewtools-api",
+    "region": "eu-central-1"
+  },
+  "api": {
+    "id": "b7c7cvt515"
+  }
+}
