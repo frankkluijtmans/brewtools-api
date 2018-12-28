@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "This is the data layer for Brewtools.",
   "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/frankkluijtmans/brewtools-api.git"
+  },
   "scripts": {
     "start": "nodemon server.js"
   },

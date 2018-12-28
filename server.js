@@ -2,7 +2,6 @@ require('dotenv').config()
 
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
 const session = require('express-session');
 const keycloakConfig = require('./config/keycloak');
 const Keycloak = require('keycloak-connect');
@@ -33,5 +32,12 @@ app.post('/recipe/update', keycloak.protect(), updateRecipeHandler);
 app.get('/recipe/get/:id', keycloak.protect(), getRecipeHandler);
 app.get('/recipe/get-all', keycloak.protect(), getAllRecipesHandler);
 app.post('/recipe/delete/:id', keycloak.protect(), deleteRecipeHandler);
+
+if(process.env.DEVELOPMENT_MODE) {
+
+    app.listen(3000, () => {
+        console.log("Brewtools API running on port 3000");
+    })
+}
 
 module.exports = app;
