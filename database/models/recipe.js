@@ -32,7 +32,10 @@ const recipeSchema = new mongoose.Schema({
         name: String,
         bitterness: 'decimal128',
         volume: Number,
-        boiling_time: Number
+        usage: {
+            amount: Number,
+            unit: String
+        }
     }],
     fermentables: [{
         name: String,
@@ -45,7 +48,10 @@ const recipeSchema = new mongoose.Schema({
     }],
     yeast: {
         name: String,
-        volume: Number
+        volume: {
+            amount: Number,
+            unit: String
+        }
     }
 });
 
