@@ -15,7 +15,11 @@ const recipeSchema = new mongoose.Schema({
     },
     style: String,
     owner: String,
-    collaborators: [String],
+    collaborators: [{
+        email: String,
+        fullname: String,
+        status: String
+    }],
     og: Number,
     fg: Number,
     ibu: Number,

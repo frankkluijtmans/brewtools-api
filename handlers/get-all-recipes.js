@@ -9,7 +9,7 @@ module.exports = (req, res) => {
 
     const query = Recipe.find({ $or:[
         { owner: token_content.email },
-        { collaborators: token_content.email }
+        { 'collaborators.email': token_content.email }
     ] });
 
     query.exec(function (err, docs) {
