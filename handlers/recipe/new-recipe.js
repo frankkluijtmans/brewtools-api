@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
-const Recipe = require('../database/models/recipe');
+const Recipe = require('../../database/models/recipe');
 
 mongoose.connect(process.env.DATABASE_URL);
 
 module.exports = (req, res) => {
 
     const token_content = req.kauth.grant.access_token.content;
+    console.log(token_content);
 
     const recipeTest = new Recipe({
         name: req.body.name,
@@ -13,7 +14,10 @@ module.exports = (req, res) => {
             user: token_content.email
         },
         style: req.body.style,
-        owner: token_content.email,
+        owner: {
+            email: token_content.email,
+            fullname: token_content.name
+        },
         collaborators: [],
         og: req.body.og,
         fg: req.body.fg,

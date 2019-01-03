@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Recipe = require('../database/models/recipe');
+const Recipe = require('../../database/models/recipe');
 
 mongoose.connect(process.env.DATABASE_URL);
 

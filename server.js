@@ -10,12 +10,17 @@ const bodyParser = require('body-parser');
 //Middleware
 const acceptOptions = require('./middleware/accept-options');
 
-//Handlers
-const updateRecipeHandler = require('./handlers/update-recipe');
-const newRecipeHandler = require('./handlers/new-recipe');
-const getRecipeHandler = require('./handlers/get-recipe');
-const getAllRecipesHandler = require('./handlers/get-all-recipes');
-const deleteRecipeHandler = require('./handlers/delete-recipe');
+//Recipe handlers
+const updateRecipeHandler = require('./handlers/recipe/update-recipe');
+const newRecipeHandler = require('./handlers/recipe/new-recipe');
+const getRecipeHandler = require('./handlers/recipe/get-recipe');
+const getAllRecipesHandler = require('./handlers/recipe/get-all-recipes');
+const deleteRecipeHandler = require('./handlers/recipe/delete-recipe');
+
+//Invite handlers
+const getAllInvitesHandler = require('./handlers/invite/get-all-invites');
+const accepInviteHandler = require('./handlers/invite/accept-invite');
+const declineInviteHandler = require('./handlers/invite/decline-invite');
 
 //Keycloak
 const memoryStore = new session.MemoryStore();
@@ -26,12 +31,17 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(acceptOptions);
 app.use(keycloak.middleware());
 
-//Endpoints
+//Recipe endpoints
 app.post('/recipe/create', keycloak.protect(), newRecipeHandler);
-app.post('/recipe/update', keycloak.protect(), updateRecipeHandler);
+app.post('/recipe/update/:id', keycloak.protect(), updateRecipeHandler);
 app.get('/recipe/get/:id', keycloak.protect(), getRecipeHandler);
 app.get('/recipe/get-all', keycloak.protect(), getAllRecipesHandler);
 app.post('/recipe/delete/:id', keycloak.protect(), deleteRecipeHandler);
+
+//Invite endpoints
+app.get('/invite/get-all', keycloak.protect(), getAllInvitesHandler);
+app.post('/invite/accept/:id', keycloak.protect(), accepInviteHandler);
+app.post('/invite/decline/:id', keycloak.protect(), declineInviteHandler);
 
 if(process.env.DEVELOPMENT_MODE) {
 
