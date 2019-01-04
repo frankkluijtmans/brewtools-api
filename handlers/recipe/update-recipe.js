@@ -5,11 +5,29 @@ mongoose.connect(process.env.DATABASE_URL);
 
 module.exports = (req, res) => {
     
-    // Delete the collaborators and owner to prevent tinkering
-    delete req.body.collaborators;
-    delete req.body.owner;
-    
-    const query = Recipe.findOneAndUpdate({ _id: req.params.id }, req.body);
+    const query = Recipe.findOneAndUpdate({ _id: req.params.id }, {
+        name: req.body.name,
+        last_edited: {
+            date: new Date(Date.now())
+        },
+        style: req.body.style,
+        og: req.body.og,
+        fg: req.body.fg,
+        ibu: req.body.ibu,
+        ebc: req.body.ebc,
+        base_volume: parseFloat(req.body.base_volume),
+        boiling_time: req.body.boiling_time,
+        mash_water: parseFloat(req.body.mash_water),
+        flush_water: parseFloat(req.body.flush_water),
+        mash: req.body.mash,
+        hops: req.body.hops,
+        fermentables: req.body.fermentables,
+        other: req.body.other,
+        yeast: {
+            name: req.body.yeast.name,
+            volume: req.body.yeast.volume
+        }
+    });
 
     query.exec(function (err) {
 
