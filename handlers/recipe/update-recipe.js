@@ -5,7 +5,7 @@ mongoose.connect(process.env.DATABASE_URL);
 
 module.exports = (req, res) => {
     
-    const query = Recipe.findOneAndUpdate({ _id: req.params.id }, {
+    const updatedRecipe = {
         name: req.body.name,
         last_edited: {
             date: new Date(Date.now())
@@ -20,14 +20,19 @@ module.exports = (req, res) => {
         mash_water: parseFloat(req.body.mash_water),
         flush_water: parseFloat(req.body.flush_water),
         mash: req.body.mash,
-        hops: req.body.hops,
+        hops: req.body.hops.map(hop => {
+            hop.bitterness = parseFloat(hop.bitterness);
+            return hop;
+        }),
         fermentables: req.body.fermentables,
         other: req.body.other,
         yeast: {
             name: req.body.yeast.name,
             volume: req.body.yeast.volume
         }
-    });
+    }
+
+    const query = Recipe.findOneAndUpdate({ _id: req.params.id }, updatedRecipe);
 
     query.exec(function (err) {
 
