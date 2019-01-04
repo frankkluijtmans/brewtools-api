@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Float = require('mongoose-float').loadType(mongoose, 2);
 
 const recipeSchema = new mongoose.Schema({ 
     name: String,
@@ -27,17 +28,17 @@ const recipeSchema = new mongoose.Schema({
     fg: Number,
     ibu: Number,
     ebc: Number,
-    base_volume: 'decimal128',
+    base_volume: Float,
     boiling_time: Number,
-    mash_water: 'decimal128',
-    flush_water: 'decimal128',
+    mash_water: Float,
+    flush_water: Float,
     mash: [{
         temperature: Number,
         duration: Number
     }],
     hops: [{
         name: String,
-        bitterness: 'decimal128',
+        bitterness: Float,
         volume: Number,
         usage: {
             amount: Number,

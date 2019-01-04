@@ -20,6 +20,7 @@
     "express-session": "^1.15.6",
     "keycloak-connect": "^4.2.1",
     "mongoose": "^5.2.6",
+    "mongoose-float": "^1.0.3",
     "nodemon": "^1.18.9"
   }
 }
