@@ -10,7 +10,7 @@ module.exports = (req, res) => {
     const query = Recipe.findOneAndUpdate(
         { 
             _id: req.params.id 
-        },   
+        },
         { 
             $pull: {
                 collaborators: {

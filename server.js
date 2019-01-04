@@ -18,6 +18,7 @@ const getAllRecipesHandler = require('./handlers/recipe/get-all-recipes');
 const deleteRecipeHandler = require('./handlers/recipe/delete-recipe');
 
 //Invite handlers
+const newInviteHandler = require('./handlers/invite/new-invite');
 const getAllInvitesHandler = require('./handlers/invite/get-all-invites');
 const accepInviteHandler = require('./handlers/invite/accept-invite');
 const declineInviteHandler = require('./handlers/invite/decline-invite');
@@ -39,9 +40,10 @@ app.get('/recipe/get-all', keycloak.protect(), getAllRecipesHandler);
 app.post('/recipe/delete/:id', keycloak.protect(), deleteRecipeHandler);
 
 //Invite endpoints
+app.post('/invite/create/:id', keycloak.protect(), newInviteHandler);
 app.get('/invite/get-all', keycloak.protect(), getAllInvitesHandler);
-app.post('/invite/accept/:id', keycloak.protect(), accepInviteHandler);
-app.post('/invite/decline/:id', keycloak.protect(), declineInviteHandler);
+app.get('/invite/accept/:id', keycloak.protect(), accepInviteHandler);
+app.get('/invite/decline/:id', keycloak.protect(), declineInviteHandler);
 
 if(process.env.DEVELOPMENT_MODE) {
 

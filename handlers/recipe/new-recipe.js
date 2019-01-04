@@ -6,7 +6,6 @@ mongoose.connect(process.env.DATABASE_URL);
 module.exports = (req, res) => {
 
     const token_content = req.kauth.grant.access_token.content;
-    console.log(token_content);
 
     const recipeTest = new Recipe({
         name: req.body.name,
