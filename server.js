@@ -22,6 +22,7 @@ const newInviteHandler = require('./handlers/invite/new-invite');
 const getAllInvitesHandler = require('./handlers/invite/get-all-invites');
 const accepInviteHandler = require('./handlers/invite/accept-invite');
 const declineInviteHandler = require('./handlers/invite/decline-invite');
+const deleteInviteHandler = require('./handlers/invite/delete-invite');
 
 //Keycloak
 const memoryStore = new session.MemoryStore();
@@ -37,10 +38,11 @@ app.post('/recipe/create', keycloak.protect(), newRecipeHandler);
 app.post('/recipe/update/:id', keycloak.protect(), updateRecipeHandler);
 app.get('/recipe/get/:id', keycloak.protect(), getRecipeHandler);
 app.get('/recipe/get-all', keycloak.protect(), getAllRecipesHandler);
-app.post('/recipe/delete/:id', keycloak.protect(), deleteRecipeHandler);
+app.get('/recipe/delete/:id', keycloak.protect(), deleteRecipeHandler);
 
 //Invite endpoints
 app.post('/invite/create/:id', keycloak.protect(), newInviteHandler);
+app.post('/invite/delete/:id', keycloak.protect(), deleteInviteHandler);
 app.get('/invite/get-all', keycloak.protect(), getAllInvitesHandler);
 app.get('/invite/accept/:id', keycloak.protect(), accepInviteHandler);
 app.get('/invite/decline/:id', keycloak.protect(), declineInviteHandler);
