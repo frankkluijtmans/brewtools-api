@@ -52,7 +52,11 @@ const recipeSchema = new mongoose.Schema({
     }],
     other: [{
         name: String,
-        volume: Number
+        volume: Number,
+        usage: {
+            amount: Number,
+            unit: String
+        }
     }],
     yeast: {
         name: String,
