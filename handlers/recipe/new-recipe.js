@@ -27,7 +27,10 @@ module.exports = (req, res) => {
         mash_water: parseFloat(req.body.mash_water),
         flush_water: parseFloat(req.body.flush_water),
         mash: req.body.mash,
-        hops: req.body.hops,
+        hops: req.body.hops.map(hop => {
+            hop.bitterness = parseFloat(hop.bitterness);
+            return hop;
+        }),
         fermentables: req.body.fermentables,
         other: req.body.other,
         yeast: {
